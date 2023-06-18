@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import demo from "./assets/demo.mp3";
 import thumbnail from "./assets/podcastThumbnail.png";
 
 function App() {
   const [podcasts, setPodcasts] = useState([]);
+
+  const audioUrl =
+    "https://taibislamdipu.github.io/stream-pods-client/src/assets/demo.mp3";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,16 +33,16 @@ function App() {
             <div className="card h-100">
               <img
                 src={thumbnail}
-                className="card-img-top"
+                className="card-img-top object-fit-contain"
                 style={{ height: "500px" }}
-                alt="..."
+                alt="thumbnail"
               />
               <div className="card-body">
                 <h5 className="card-title">{podcast?.title}</h5>
                 <p className="card-text">{podcast?.description}</p>
                 <div>
                   <audio controls>
-                    <source src={demo} type="audio/mpeg" />
+                    <source src={audioUrl} type="audio/mpeg" />
                     Your browser does not support the audio element.
                   </audio>
                 </div>
