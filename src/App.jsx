@@ -24,12 +24,17 @@ function App() {
   }, []);
 
   return (
-    <>
+    <div className="container p-5">
       <div className="row row-cols-1 row-cols-md-2 g-4">
         {podcasts?.map((podcast, i) => (
           <div className="col" key={i}>
             <div className="card h-100">
-              <img src={thumbnail} className="card-img-top" alt="..." />
+              <img
+                src={thumbnail}
+                className="card-img-top"
+                style={{ height: "500px" }}
+                alt="..."
+              />
               <div className="card-body">
                 <h5 className="card-title">{podcast?.title}</h5>
                 <p className="card-text">{podcast?.description}</p>
@@ -44,7 +49,7 @@ function App() {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }
 
