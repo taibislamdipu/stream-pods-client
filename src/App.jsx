@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import thumbnail from "./assets/podcastThumbnail.png";
+import audioFile from "./assets/demo.mp3";
 
 function App() {
   const [podcasts, setPodcasts] = useState([]);
-
-  const audioUrl =
-    "https://taibislamdipu.github.io/stream-pods-client/src/assets/demo.mp3";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,10 +40,12 @@ function App() {
                 <p className="card-text">{podcast?.description}</p>
                 <div>
                   <audio controls>
-                    <source src={audioUrl} type="audio/mpeg" />
+                    <source src={audioFile} type="audio/mpeg" />
                     Your browser does not support the audio element.
                   </audio>
                 </div>
+
+                <div id="buzzsprout-large-player"></div>
               </div>
             </div>
           </div>
