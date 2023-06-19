@@ -38,6 +38,7 @@ function App() {
                 src={thumbnail}
                 className="card-img-top object-fit-contain"
                 alt="thumbnail"
+                loading="lazy"
               />
               <div className="card-body">
                 <p className="card-title text-success d-flex align-items-center gap-1">
