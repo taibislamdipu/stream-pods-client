@@ -3,6 +3,7 @@ import "./App.css";
 import thumbnail from "./assets/podcastThumbnail.png";
 import audioFile from "./assets/demo.mp3";
 import { ImHeadphones } from "react-icons/im";
+import Loading from "./components/loading/Loading";
 
 function App() {
   const [podcasts, setPodcasts] = useState([]);
@@ -28,35 +29,39 @@ function App() {
 
   return (
     <div className="container py-5">
-      <h2 className="py-3">Latest episodes</h2>
+      {podcasts?.length > 0 && <h2 className="py-3">Latest episodes</h2>}
 
       <div className="row row-cols-1 row-cols-md-3 g-4">
-        {podcasts?.map((podcast, i) => (
-          <div className="col" key={i}>
-            <div className="card h-100">
-              <img
-                src={thumbnail}
-                className="card-img-top object-fit-contain"
-                alt="thumbnail"
-                loading="lazy"
-              />
-              <div className="card-body">
-                <p className="card-title text-success d-flex align-items-center gap-1">
-                  <ImHeadphones />
-                  {podcast?.title}
-                </p>
-                <h5 className="card-text">{podcast?.description}</h5>
+        {!podcasts?.length ? (
+          <Loading />
+        ) : (
+          podcasts?.map((podcast, i) => (
+            <div className="col" key={i}>
+              <div className="card h-100">
+                <img
+                  src={thumbnail}
+                  className="card-img-top object-fit-contain"
+                  alt="thumbnail"
+                  loading="lazy"
+                />
+                <div className="card-body">
+                  <p className="card-title text-success d-flex align-items-center gap-1">
+                    <ImHeadphones />
+                    {podcast?.title}
+                  </p>
+                  <h5 className="card-text">{podcast?.description}</h5>
 
-                <div className="overflow-hidden overflow-sm-scroll">
-                  <audio controls>
-                    <source src={audioFile} type="audio/mpeg" />
-                    Your browser does not support the audio element.
-                  </audio>
+                  <div className="overflow-hidden overflow-sm-scroll">
+                    <audio controls>
+                      <source src={audioFile} type="audio/mpeg" />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </div>
   );
