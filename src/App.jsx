@@ -9,7 +9,9 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/v1/podcast");
+        const response = await fetch(
+          `${import.meta.env.VITE_BASE_URL}/podcast`
+        );
         if (!response.ok) {
           throw new Error("Error fetching data");
         }
