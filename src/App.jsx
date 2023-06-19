@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import thumbnail from "./assets/podcastThumbnail.png";
 import audioFile from "./assets/demo.mp3";
+import { ImHeadphones } from "react-icons/im";
 
 function App() {
   const [podcasts, setPodcasts] = useState([]);
@@ -26,28 +27,31 @@ function App() {
   }, []);
 
   return (
-    <div className="container p-5">
-      <div className="row row-cols-1 row-cols-md-2 g-4">
+    <div className="container py-5">
+      <h2 className="py-3">Latest episodes</h2>
+
+      <div className="row row-cols-1 row-cols-md-3 g-4">
         {podcasts?.map((podcast, i) => (
           <div className="col" key={i}>
             <div className="card h-100">
               <img
                 src={thumbnail}
                 className="card-img-top object-fit-contain"
-                style={{ height: "500px" }}
                 alt="thumbnail"
               />
               <div className="card-body">
-                <h5 className="card-title">{podcast?.title}</h5>
-                <p className="card-text">{podcast?.description}</p>
-                <div>
+                <p className="card-title text-success d-flex align-items-center gap-1">
+                  <ImHeadphones />
+                  {podcast?.title}
+                </p>
+                <h5 className="card-text">{podcast?.description}</h5>
+
+                <div className="overflow-hidden overflow-sm-scroll">
                   <audio controls>
                     <source src={audioFile} type="audio/mpeg" />
                     Your browser does not support the audio element.
                   </audio>
                 </div>
-
-                <div id="buzzsprout-large-player"></div>
               </div>
             </div>
           </div>
